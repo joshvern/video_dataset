@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/playlist_config.schema.json",
+  "title": "PlaylistConfig",
+  "type": "object",
+  "required": ["playlist", "pipeline", "output"],
+  "properties": {
+    "playlist": {
+      "type": "object",
+      "required": ["id", "url"],
+      "properties": {
+        "id": {"type": "string"},
+        "name": {"type": "string"},
+        "url": {"type": "string"}
+      },
+      "additionalProperties": true
+    },
+    "pipeline": {
+      "type": "object",
+      "required": ["segmentation_strategy", "normalized_buckets"],
+      "properties": {
+        "segmentation_strategy": {"type": "string"},
+        "normalized_buckets": {
+          "type": "array",
+          "items": {
+            "enum": ["child", "teen", "college_student", "grad_student", "expert"]
+          },
+          "minItems": 5,
+          "maxItems": 5
+        },
+        "download_media": {"type": "boolean"},
+        "media_output_dir": {"type": "string"},
+        "transcript_languages": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "manual_transcript_first": {"type": "boolean"},
+        "segmentation": {"type": "object"},
+        "topic_overrides": {"type": "object"},
+        "llm_topic_fallback": {"type": "object"},
+        "yt_dlp": {"type": "object"}
+      },
+      "additionalProperties": true
+    },
+    "output": {
+      "type": "object",
+      "required": [
+        "raw_playlist_path",
+        "raw_transcript_dir",
+        "processed_long_path",
+        "processed_wide_path",
+        "review_low_confidence_path"
+      ],
+      "properties": {
+        "raw_playlist_path": {"type": "string"},
+        "raw_transcript_dir": {"type": "string"},
+        "processed_long_path": {"type": "string"},
+        "processed_wide_path": {"type": "string"},
+        "review_low_confidence_path": {"type": "string"},
+        "write_parquet": {"type": "boolean"},
+        "long_parquet_path": {"type": "string"},
+        "wide_parquet_path": {"type": "string"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

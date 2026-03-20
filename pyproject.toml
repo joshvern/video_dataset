@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "video-dataset"
+version = "0.1.0"
+description = "Config-driven YouTube playlist ingestion pipeline for structured datasets"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "PyYAML>=6.0",
+  "yt-dlp>=2025.1.0",
+  "youtube-transcript-api>=0.6.2",
+]
+
+[project.optional-dependencies]
+parquet = ["pandas>=2.0", "pyarrow>=15.0"]
+dev = [
+  "pytest>=8.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.setuptools]
+package-dir = {"" = "."}
+
+[tool.setuptools.packages.find]
+include = ["src*"]
