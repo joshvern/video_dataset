@@ -14,4 +14,5 @@ def test_load_config_resolves_paths_from_repo_root():
     assert config.raw_playlist_path == repo_root / "data/raw/playlists/wired_5_levels.json"
     assert config.processed_long_path.name == "wired_5_levels.jsonl"
     assert config.transcript_languages == ["en"]
+    assert config.transcript_request_delay_seconds == 2.0
     assert NORMALIZED_BUCKETS == ["child", "teen", "college_student", "grad_student", "expert"]
