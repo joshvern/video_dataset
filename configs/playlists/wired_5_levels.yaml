@@ -1,7 +1,7 @@
 playlist:
   id: wired_5_levels
   name: WIRED 5 Levels
-  url: https://www.youtube.com/playlist?list=PLJ8cMiYb3G5eQnV7Y2tYI8aAizI0s5mom
+  url: https://www.youtube.com/playlist?list=PLibNZv5Zd0dyCoQ6f4pdXUFnpAIlKgm3N
 
 pipeline:
   segmentation_strategy: wired_5_levels

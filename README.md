@@ -19,24 +19,35 @@ A config-driven Python pipeline for ingesting YouTube playlists into analysis-re
 - Keep raw, processed, and review outputs separated.
 - Add future playlists by creating another YAML config.
 
-## Installation
+## Quick Start
+
+This project works fine with a plain Python virtual environment. No Poetry, Conda, or workspace-specific path setup is required.
 
 ```bash
-python -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
+python -m pip install --upgrade pip
 pip install -e .[dev]
 ```
 
-Optional Parquet support:
-
-```bash
-pip install -e .[dev,parquet]
-```
-
-## Run the WIRED 5 Levels pipeline
+Run the pipeline:
 
 ```bash
 python -m src.cli run --config configs/playlists/wired_5_levels.yaml
+```
+
+Run tests:
+
+```bash
+python -m pytest
+```
+
+## Optional Dependencies
+
+Parquet support:
+
+```bash
+pip install -e .[dev,parquet]
 ```
 
 ## Config schema
