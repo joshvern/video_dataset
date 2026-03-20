@@ -1,0 +1,12 @@
+__pycache__/
+.pytest_cache/
+*.pyc
+.venv/
+data/raw/playlists/*.json
+data/raw/transcripts/*.json
+data/raw/media/
+data/processed/long/*.jsonl
+data/processed/wide/*.csv
+data/processed/review/*.jsonl
+data/processed/long/*.parquet
+data/processed/wide/*.parquet
