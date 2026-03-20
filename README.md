@@ -36,6 +36,18 @@ Run the pipeline:
 python -m src.cli run --config configs/playlists/wired_5_levels.yaml
 ```
 
+Refresh raw artifacts explicitly when you want to touch YouTube again:
+
+```bash
+python -m src.cli ingest --config configs/playlists/wired_5_levels.yaml
+```
+
+Rebuild processed outputs from the existing raw layer without hitting upstream services again:
+
+```bash
+python -m src.cli process --config configs/playlists/wired_5_levels.yaml
+```
+
 Run tests:
 
 ```bash
@@ -85,6 +97,14 @@ data/processed/review/<playlist_id>_low_confidence.jsonl
 - `src/writers.py`: Long/wide/review dataset generation and writing.
 - `src/pipeline.py`: End-to-end orchestration.
 - `src/cli.py`: Command line interface.
+
+## Raw vs processed runs
+
+- `python -m src.cli run ...` uses the existing raw layer and only regenerates processed outputs.
+- `python -m src.cli ingest ...` refreshes raw playlist/transcript artifacts and then writes processed outputs.
+- `python -m src.cli process ...` treats the raw layer as fixed input and only regenerates processed outputs.
+- `pipeline.transcript_request_delay_seconds` adds a pause between transcript fetches during `ingest` to reduce burstiness against upstream services.
+- Missing raw transcript files are handled as low-confidence empty transcripts so processing can continue.
 
 ## Segmentation strategies
 

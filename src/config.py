@@ -151,6 +151,7 @@ def load_config(path: str | Path) -> PlaylistConfig:
         wide_parquet_path=_path(output["wide_parquet_path"], base_dir) if output.get("wide_parquet_path") else None,
         transcript_languages=pipeline.get("transcript_languages", ["en"]),
         manual_transcript_first=pipeline.get("manual_transcript_first", True),
+        transcript_request_delay_seconds=float(pipeline.get("transcript_request_delay_seconds", 0.0) or 0.0),
         topic_overrides=pipeline.get("topic_overrides", {}),
         segmentation=pipeline.get("segmentation", {}),
         llm_topic_fallback=pipeline.get("llm_topic_fallback", {}),

@@ -15,6 +15,7 @@ pipeline:
   media_output_dir: data/raw/media/wired_5_levels
   transcript_languages: [en]
   manual_transcript_first: true
+  transcript_request_delay_seconds: 2.0
   segmentation:
     low_confidence_threshold: 0.55
   topic_overrides: {}

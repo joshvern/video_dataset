@@ -31,6 +31,7 @@ class PlaylistConfig:
     wide_parquet_path: Path | None = None
     transcript_languages: list[str] = field(default_factory=lambda: ["en"])
     manual_transcript_first: bool = True
+    transcript_request_delay_seconds: float = 0.0
     topic_overrides: dict[str, str] = field(default_factory=dict)
     segmentation: dict[str, Any] = field(default_factory=dict)
     llm_topic_fallback: dict[str, Any] = field(default_factory=dict)
