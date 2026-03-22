@@ -8,7 +8,7 @@ from src.download import download_playlist_media
 from src.playlist_ingestion import ingest_playlist_metadata, load_playlist_metadata
 from src.segmentation import get_strategy
 from src.topic_extraction import extract_topic_key
-from src.transcripts import fetch_transcript, load_transcript_result, write_transcript_result
+from src.transcripts import fetch_transcript, load_transcript_result, write_transcript_result, _make_api
 from src.writers import build_long_rows, build_review_rows, build_wide_rows, write_outputs
 
 
@@ -73,9 +73,10 @@ def run_ingestion_pipeline(config_path: str) -> dict[str, int | str]:
 
     transcript_payloads: dict[str, dict] = {}
     entries = playlist_payload.get("entries", [])
+    api = _make_api()
     for index, entry in enumerate(entries):
         video_id = entry["video_id"]
-        transcript_result = fetch_transcript(video_id, config)
+        transcript_result = fetch_transcript(video_id, config, api=api)
         write_transcript_result(transcript_result, config.raw_transcript_dir)
         transcript_payloads[video_id] = transcript_result.to_dict()
         _delay_between_transcript_requests(config.transcript_request_delay_seconds, index == len(entries) - 1)
